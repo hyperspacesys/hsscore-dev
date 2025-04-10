@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "hssexec.h"
 int main(int argc, char *argv[]) {
     bool is_gui_present;
     if (NULL == getenv("DISPLAY")) is_gui_present = false;
