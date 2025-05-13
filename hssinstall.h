@@ -1,12 +1,73 @@
 #include "hsscompile.h"
 hssinstall(char *object)
 {
+    bool dotflag = false;
+    char base[64]; //base filename
+    char ext[16]; //file extension
+    int baseIndex = 0;
+    int extIndex = 0;
+    for (int i = 0; i < strlen(filename); i++)
+    {
+        if (filename[i] == '.') //check for file dot
+        {
+            flag = true;
+        }
+        else if (flag == false)
+        {
+            base[baseIndex] = filename[i];
+            baseIndex++;
+        }
+        else if(flag == true)
+        {
+            ext[extIndex] = filename[i];
+            extIndex++;
+        }
+    }
+    char *basepointer = &base;
+    char *extpointer = &ext;
     // Check if the object is a valid package
     if (is_valid_package(object))
     {
         // Install the package
         system("echo 'Installing package...'");
-        // Add installation logic here       
+        // Add installation logic here
+        if (extpointer == "hss")
+        {
+            system("unzip %s -d %s", object, "./hss");
+            if= (system("ls ./hss") == 0)
+            {
+                system("echo 'Package installed successfully.'");
+            }
+            else
+            {
+                system("echo 'Package installation failed.'");
+            }
+        }
+        else if (extpointer == "c")
+        {
+            system("gcc -o %s %s", basepointer, object);
+            system("echo 'Package installed successfully.'");
+        }
+        else if (extpointer == "cpp")
+        {
+            system("g++ -o %s %s", basepointer, object);
+            if (system("ls ./hss") == 0)
+            {
+                system("echo 'Package installed successfully.'");
+            }
+            else
+            {
+                system("echo 'Package installation failed.'");
+            }
+        }
+        else
+        {
+            {
+                printf("Unsupported package type: %s\n", extpointer);
+                return -1;`
+            }
+            system("echo 'Package installed successfully.'");
+        }
     }
     else
     {

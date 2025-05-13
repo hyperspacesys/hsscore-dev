@@ -21,7 +21,7 @@ int hsscompile(char *filename)
         else if(flag == true)
         {
             ext[extIndex] = filename[i];
-            extIndex++;
+            extIndex++; 
         }
     }
     char *basepointer = &base;
